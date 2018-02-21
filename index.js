@@ -12,30 +12,6 @@ restService.use(
 );
 
 restService.use(bodyParser.json());
-
-restService.post("/chatbot", function(req, res){
-  var mysql      = require('mysql');
-  var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'root'
-  });
-  var day = req.body.result &&
-    req.body.result.parameters &&
-    req.body.result.parameters.date
-      ? req.body.result.parameters.date
-      : "Seems like some problem. Speak again.";
-  connection.connect();
-  var speech = connection.query('SELECT course_name, time_start, time_finish FROM Class INNER JOIN Timetable WHERE Class.course_id = Timetable.course_id AND Timetable.course_day = 'Tuesday' ORDER by time_start' , function (error, results, fields) {
-       if (error) throw error;
-         console.log('The solution is: ', results[0].solution);
-  });
-  return res.json({
-    speech: speech,
-    displayText: speech,
-    source: "webhook-echo-sample"
-  });
-});
 restService.post("/echo", function(req, res) {
   var speech =
     req.body.result &&
