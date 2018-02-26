@@ -15,7 +15,7 @@ restService.use(
 restService.use(bodyParser.json());
 
 restService.listen('3306',() =>{
-  console.log("Server started on port 3306');
+  console.log('Server started on port 3306');
 });
 
 restService.post("/echo", function(req, res) {
