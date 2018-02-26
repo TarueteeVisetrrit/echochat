@@ -3,6 +3,13 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mysql = require('mysql');
+//create connection 
+const db = mysql.createConnection({
+ host     : 'localhost',
+ user     : 'root',
+ password : 'root',
+ databse  : 'CTS'
+});
 
 const restService = express();
  
